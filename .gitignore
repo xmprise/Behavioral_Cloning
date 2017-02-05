@@ -1,0 +1,5 @@
+*.p
+*.pickle
+.idea/
+*.npy
+*.h5
