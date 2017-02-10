@@ -1,4 +1,3 @@
-
 import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -84,11 +83,14 @@ class CreateData:
         return image, steering
 
     def img_preprocess(self, image):
-        # Crop useless scene and focus on track
-        img_crop = image[60:140, :, :]
-        # Resize image
-        img_resize = cv2.resize(img_crop, (64, 64), interpolation=cv2.INTER_AREA)
-        # Convert to YUV
-        image = cv2.cvtColor(img_resize, cv2.COLOR_RGB2YUV)
+        # Crop useless scene and focus on track and resize
+        img_resize = cv2.resize(image[60:140, :], (64, 64))
+        # Convert to color space
+        hsv = cv2.cvtColor(img_resize, cv2.COLOR_RGB2HSV)
+        # random brightness
+        rand = np.random.uniform(0.3, 1.0)
+        hsv[:, :, 2] = rand * hsv[:, :, 2]
+        # back to origin color space
+        new_img = cv2.cvtColor(hsv, cv2.COLOR_HSV2RGB)
 
-        return image
+        return new_img

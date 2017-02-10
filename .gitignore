@@ -3,3 +3,7 @@
 .idea/
 *.npy
 *.h5
+.Track_1_model/
+.Track_1_model_sec/
+.Track_2_model/
+.__pycache__/
