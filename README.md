@@ -57,9 +57,7 @@ python drive.py modelxxx.h5
 
 ###DNN Architecture
 
-
 The structure of DNN uses VGG16, which is based on newly introduced ones (eg faster R-CNN, Segnet, Single Shot Detector, etc.).
-
 
 In this project, it seems more advantageous to use a relatively simple NVIDIA model. reason for this is that it is important to pre-process the acquired data and match the center image with the images on both sides. VGG16 takes longer learning time because there are more hidden layers.
 Despite these reasons, i chose to use VGG16 because it is the base for many different models. many other models are using the VGG16 pre-training set.
@@ -98,3 +96,22 @@ Details of the model used are described below.
 |fc4 (Dense)                     |(None, 32)          |2080        |fc3_dropout       |                
 |fc4_dropout (Dropout)           |(None, 32)          |0           |fc4               |                        
 |                                |**Total params**    |15,913,677
+
+###Image Preprocessing
+
+Since only the road portion of the car is needed for learning, the image is cropped and used.
+The model is adjusted to 64x64 and transforms the color space of the image to make the gradient work better.
+
+###Image Augumentation
+
+Select one of the three images center, right, left for learning data, and adjust the steering angle to the steering angle associated with the left or right image to 0.25. Because the model will be out of the center as time passes, you can create an offset value to create and recover non-zero errors.
+
+Advantage of learning both images near the road is to learn that recover from the roadside back to the center, resulting in smoother steering.
+
+###Reflection
+Track 2 did not work well, so i tested both the VGG16 and nvida structures and obtained a lot of data. i used the VGG16 and passed it while keeping the vehicle speed at 15 mph. generated pre-training data tend to overfit, and it is necessary to confirm whether the data is the problem. also, i think that the problem of steering shaking can be solved through simple filters.
+
+###Refernces
+- NVIDIA model: https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/
+- Comma.ai model: https://github.com/commaai/research
+- Recovering idea: https://medium.com/@mohankarthik/cloning-a-car-to-mimic-human-driving-5c2f7e8d8aff#.y50qf6ltd
