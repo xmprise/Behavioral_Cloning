@@ -7,3 +7,15 @@ The model runs as shown below.
 Track 1                       |  Track 2
 :----------------------------:|:------------------------------:
 ![Track 1](imgfile/track1.gif) | ![Track 2](imgfile/track2.gif)
+|[YouTube Link](https://youtu.be/j5FRHlkMdpM)|[YouTube Link](https://youtu.be/MDbgBqUcmnE)|
+
+###Dependencies
+
+This project used version 3.5 of Python. 
+
+- [TensorFlow](http://tensorflow.org)
+- [Keras](https://keras.io/)
+- [pandas](http://pandas.pydata.org/)
+- [NumPy](http://www.numpy.org/)
+- [scikit-learn](http://scikit-learn.org/)
+- [opencv](http://opencv.org/)
