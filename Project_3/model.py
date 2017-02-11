@@ -68,7 +68,6 @@ batch_size = 120 # Track 2, 32
 
 checkpoint = ModelCheckpoint("model-{epoch:03d}.h5", monitor='val_loss', verbose=0, save_best_only=True, mode='auto')
 
-
 model.compile(loss='mean_squared_error', optimizer=Adam(lr=1.0e-4))
 
 model.fit_generator(data.batch_data(X_train, y_train, batch_size), samples_per_epoch=160*batch_size, nb_epoch=2,
