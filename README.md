@@ -97,7 +97,8 @@ Details of the model used are described below.
 |fc4_dropout (Dropout)           |(None, 32)          |0           |fc4               |                        
 |                                |**Total params**    |15,913,677
 
-###Example of Augumented and processing images
+###Example of augumented and processing images
+
 **Center Image**
 
 ![Center Image](imgfile/center_2017_02_11_01_48_41_586.jpg)
