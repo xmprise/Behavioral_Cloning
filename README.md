@@ -97,6 +97,32 @@ Details of the model used are described below.
 |fc4_dropout (Dropout)           |(None, 32)          |0           |fc4               |                        
 |                                |**Total params**    |15,913,677
 
+###Example Images
+**Center Image**
+
+![Center Image](imgfile/center_2017_02_11_01_48_41_586.jpg)
+
+**Left Image**
+
+![Left Image](imgfile/left_2017_02_11_01_48_41_586.jpg)
+
+**Right Image**
+
+![Right Image](imgfile/right_2017_02_11_01_48_41_586.jpg)
+
+**Flipped Image**
+
+![Flipped Image](imgfile//flip.png)
+
+**Translated Image**
+
+![Translated Image](imgfile//translate.png)
+
+**Pre-processing Image**
+
+![Translated Image](imgfile//translate.png)
+
+
 ###Image Preprocessing
 
 Since only the road portion of the car is needed for learning, the image is cropped and used.
