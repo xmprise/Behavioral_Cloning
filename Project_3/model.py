@@ -16,29 +16,29 @@ def get_model():
                      input_shape=(64, 64, 3),
                      output_shape=(64, 64, 3)))
 
-    model.add(Convolution2D(3, 1, 1, border_mode='same', name='color_conv'))
-    model.add(Convolution2D(64, 3, 3, activation='elu', border_mode='same', name='block1_conv1'))
-    model.add(Convolution2D(64, 3, 3, activation='elu', border_mode='same', name='block1_conv2'))
-    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='block1_pool'))
+    model.add(Convolution2D(3, 1, 1, border_mode='same', name='conv_in'))
+    model.add(Convolution2D(64, 3, 3, activation='elu', border_mode='same', name='conv_1'))
+    model.add(Convolution2D(64, 3, 3, activation='elu', border_mode='same', name='conv_2'))
+    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='pool_1'))
 
-    model.add(Convolution2D(128, 3, 3, activation='elu', border_mode='same', name='block2_conv1'))
-    model.add(Convolution2D(128, 3, 3, activation='elu', border_mode='same', name='block2_conv2'))
-    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='block2_pool'))
+    model.add(Convolution2D(128, 3, 3, activation='elu', border_mode='same', name='conv_3'))
+    model.add(Convolution2D(128, 3, 3, activation='elu', border_mode='same', name='conv_4'))
+    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='pool_2'))
 
-    model.add(Convolution2D(256, 3, 3, activation='elu', border_mode='same', name='block3_conv1'))
-    model.add(Convolution2D(256, 3, 3, activation='elu', border_mode='same', name='block3_conv2'))
-    model.add(Convolution2D(256, 3, 3, activation='elu', border_mode='same', name='block3_conv3'))
-    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='block3_pool'))
+    model.add(Convolution2D(256, 3, 3, activation='elu', border_mode='same', name='conv_5'))
+    model.add(Convolution2D(256, 3, 3, activation='elu', border_mode='same', name='conv_6'))
+    model.add(Convolution2D(256, 3, 3, activation='elu', border_mode='same', name='conv_7'))
+    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='pool_3'))
 
-    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='block4_conv1'))
-    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='block4_conv2'))
-    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='block4_conv3'))
-    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='block4_pool'))
+    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='conv_8'))
+    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='conv_9'))
+    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='conv_10'))
+    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='pool_4'))
 
-    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='block5_conv1'))
-    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='block5_conv2'))
-    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='block5_conv3'))
-    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='block5_pool'))
+    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='conv_11'))
+    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='conv_12'))
+    model.add(Convolution2D(512, 3, 3, activation='elu', border_mode='same', name='conv_13'))
+    model.add(MaxPooling2D((2, 2), strides=(2, 2), name='pool_5'))
 
     model.add(Flatten(name='Flatten'))
     model.add(Dense(512, activation='elu', name='fc1'))
@@ -70,6 +70,6 @@ checkpoint = ModelCheckpoint("model-{epoch:03d}.h5", monitor='val_loss', verbose
 
 model.compile(loss='mean_squared_error', optimizer=Adam(lr=1.0e-4))
 
-model.fit_generator(data.batch_data(X_train, y_train, batch_size), samples_per_epoch=160*batch_size, nb_epoch=2,
+model.fit_generator(data.batch_data(X_train, y_train, batch_size), samples_per_epoch=160*batch_size, nb_epoch=5,
                     validation_data=data.batch_data(X_valid, y_valid, batch_size),
                     nb_val_samples=batch_size, callbacks=[checkpoint], verbose=1)
